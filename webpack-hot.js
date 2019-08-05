@@ -22,7 +22,7 @@ const devServer = new WebpackDevServer(compiler, {
   },
 });
 
-devServer.listen(port, 'localhost', err => {
+devServer.listen(port, '0.0.0.0', err => {
   if (err) {
     console.error(err);
   }

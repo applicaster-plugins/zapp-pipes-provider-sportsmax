@@ -2,13 +2,13 @@ import * as commands from './commands';
 
 export const handler = nativeBridge => params => {
   const type = getType(params);  
-  console.log(params);
   
   if (!type || [ 'generateToken' ].indexOf(type) == -1) {
     return nativeBridge.throwError('unknown request');
   }
   params = convertParam(params);
-  return commands[type](params)
+
+  return commands[type](params,nativeBridge)
     .then(nativeBridge.sendResponse)
     .catch(nativeBridge.throwError);
 };
