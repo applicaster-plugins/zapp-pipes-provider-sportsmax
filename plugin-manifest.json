@@ -1,0 +1,36 @@
+{
+  "api": {},
+  "dependency_repository_url": [
+    "https://github.com/applicaster-plugins/zapp-pipes-provider-sportsmax"
+  ],
+  "dependency_name": "@applicaster/zapp-pipes-provider-sportsmaxds",
+  "dependency_version": "0.0.1",
+  "platform": null,
+  "author_name": "Elad Kariti",
+  "author_email": "e.kariti@applicaster.com",
+  "manifest_version": "0.0.1",
+  "name": "Sportsmax ds",
+  "description": "Create a sportsmax authentication token to enable watch locked item from applicater2",
+  "type": "data_source_provider",
+  "identifier": "zapp-pipes-provider-sportsmaxds",
+  "ui_builder_support": true,
+  "whitelisted_account_ids": [
+    "5cc6f5d65d639a000cf17876"
+  ],
+  "min_zapp_sdk": "7.4.2",
+  "deprecated_since_zapp_sdk": "",
+  "unsupported_since_zapp_sdk": "",
+  "scheme": "sportsmaxds",
+  "data_types": [
+    {
+      "label": "SPORTSMAX TOKEN",
+      "value": "SPORTSMAX_TOKEN",
+      "documentation": {
+        "link": "https://github.com/applicaster-plugins/zapp-pipes-provider-sportsmax/blob/master/README.md",
+        "input_description": "pass timestamp and uuid, the timestamp determine how long the token should be valid",
+        "input_placeholder": "timestamp=<timestamp_in_second>&uuid=<uuid>",
+        "input_description_image_url": ""
+      }
+    }
+  ]
+}
