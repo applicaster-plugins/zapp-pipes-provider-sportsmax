@@ -15,7 +15,7 @@
   "identifier": "zapp-pipes-provider-sportsmaxds",
   "ui_builder_support": true,
   "whitelisted_account_ids": [
-    "5cc6f5d65d639a000cf17876"
+    "5af949534da8f300080050f9"
   ],
   "min_zapp_sdk": "7.4.2",
   "deprecated_since_zapp_sdk": "",
