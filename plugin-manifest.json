@@ -4,13 +4,13 @@
     "https://github.com/applicaster-plugins/zapp-pipes-provider-sportsmax"
   ],
   "dependency_name": "@applicaster/zapp-pipes-provider-sportsmaxds",
-  "dependency_version": "0.0.2",
+  "dependency_version": "0.0.5",
   "platform": null,
-  "author_name": "Elad Kariti",
-  "author_email": "e.kariti@applicaster.com",
-  "manifest_version": "0.0.2",
+  "author_name": "S. Borkin",
+  "author_email": "s.borkin@applicaster.com",
+  "manifest_version": "1.1.0",
   "name": "Sportsmax ds",
-  "description": "Create a sportsmax authentication token to enable watch locked item from applicater2",
+  "description": "",
   "type": "data_source_provider",
   "identifier": "zapp-pipes-provider-sportsmaxds",
   "ui_builder_support": true,
@@ -29,6 +29,16 @@
         "link": "https://github.com/applicaster-plugins/zapp-pipes-provider-sportsmax/blob/master/README.md",
         "input_description": "pass timestamp and uuid, the timestamp determine how long the token should be valid",
         "input_placeholder": "timestamp=<timestamp_in_second>&uuid=<uuid>",
+        "input_description_image_url": ""
+      }
+    },
+    {
+      "label": "Channel List",
+      "value": "channel-list",
+      "documentation": {
+        "link": "https://github.com/applicaster-plugins/zapp-pipes-provider-sportsmax/blob/master/README.md",
+        "input_description": "",
+        "input_placeholder": "",
         "input_description_image_url": ""
       }
     }

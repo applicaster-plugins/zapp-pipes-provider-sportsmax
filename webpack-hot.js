@@ -3,6 +3,8 @@ const WebpackDevServer = require('webpack-dev-server');
 const webpackConfig = require('./webpack.config');
 
 const port = process.env.PORT || 8080;
+const host = process.env.HOST || '0.0.0.0';
+
 const compiler = webpack(webpackConfig);
 
 const devServer = new WebpackDevServer(compiler, {
@@ -10,7 +12,7 @@ const devServer = new WebpackDevServer(compiler, {
   hot: true,
   inline: true,
   historyApiFallback: true,
-  quiet: false,
+  quiet: true,
   noInfo: false,
   lazy: false,
   stats: {
@@ -20,9 +22,12 @@ const devServer = new WebpackDevServer(compiler, {
     chunks: false,
     children: false,
   },
+  watchOptions: {
+    poll: true
+  },
 });
 
-devServer.listen(port, '0.0.0.0', err => {
+devServer.listen(port, host, err => {
   if (err) {
     console.error(err);
   }

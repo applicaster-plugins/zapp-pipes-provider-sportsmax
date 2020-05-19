@@ -1,6 +1,8 @@
 export const manifest = {
   handlers: [
     "SPORTSMAX_TOKEN",
+    "channel-list",
+    "epg",
   ],
   help: {
     SPORTSMAX_TOKEN: {

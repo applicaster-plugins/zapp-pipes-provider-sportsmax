@@ -1,35 +1,18 @@
-import * as commands from './commands';
+import { commands } from './commands';
 
 export const handler = nativeBridge => params => {
-  const type = getType(params);  
-  
-  if (!type || [ 'generateToken' ].indexOf(type) == -1) {
-    return nativeBridge.throwError('unknown request');
-  }
-  params = convertParam(params);
+  const { type } = params;
 
-  return commands[type](params,nativeBridge)
-    .then(nativeBridge.sendResponse)
-    .catch(nativeBridge.throwError);
+  if (!type) {
+    return nativeBridge.throwError('command type is missing in params');
+  }
+
+  var command = commands[type];
+  if (!command) {
+    return nativeBridge.throwError('command not supported');
+  }
+
+  return command(params, nativeBridge)
+  .then(nativeBridge.sendResponse)
+  .catch(nativeBridge.throwError);
 };
-
-function convertParam(params){
-  try{
-    var items = params.url.split("&");
-    params.timestamp = items[0].split("=")[1];
-    params.uuid = items[1].split("=")[1];
-  }catch(e){
-
-  }
-  return params;
-}
-
-
-
-const getType = ({ type }) =>
-  ({
-    SPORTSMAX_TOKEN: 'generateToken',
-  }[type]);
-
-
-  //api[udid]=71bdbabfa58e00a9&api[uuid]=5d45b437accf6000140fbd6e
