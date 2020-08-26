@@ -17,24 +17,24 @@ export function getChannelList(params, nativeBridge) {
 	function generateToken(timestamp) {
 		const secret = "AViqL8rxVraFMtoa58nR6H4pfXZzXUmdxTwhFhB7";
 		const name = "Sportsmax"
-	
+
 		const expiryTimestamp = Math.round(timestamp / 1000) + (60 * 100);
-	
+
 		const header = {
 			"alg": "HS256",
 			"typ": "JWT"
 		}
-	
+
 		const data = {
 			"iss": name,
 			"exp": expiryTimestamp,
 			"uuid": uuid
 		}
-		
+
 		var token = jwt.sign(data, secret, { header });
 		return token;
 	}
-	
+
 	function getChannelsFeed(channels) {
 		return {
 			"type": {
@@ -45,14 +45,16 @@ export function getChannelList(params, nativeBridge) {
 			"entry": channels || []
 		}
 	}
-	
+
 	function getChannelEntry(item) {
 		const channel = atomFormatter("channel", item);
-	
-		let free = false;
 
-		const authProviders = item["channel"]["authorization_providers_ids"];
-		if (!authProviders || authProviders.constructor !== Array || authProviders.length == 0) {
+		let free = false;
+		let authProviders = item["channel"]["authorization_providers_ids"];
+
+		if (authProviders && authProviders.length) {
+			authProviders = authProviders.map(item => item.toString())
+		} else {
 			free = true;
 		}
 
@@ -74,14 +76,14 @@ export function getChannelList(params, nativeBridge) {
 
 	function sortParams(params) {
 		var result = {};
-		
+
     Object.keys(params).sort().forEach(function(key) {
       result[key] = params[key];
 		});
-		
+
     return result;
   }
-	
+
 	function getAuthRequest(url) {
 		const timestamp = new Date().getTime();
 
@@ -93,7 +95,7 @@ export function getChannelList(params, nativeBridge) {
 			"bundle": bundleIdentifier,
 			uuid
 		};
-	
+
 		const signedParams = signRequest(
 			url,
 			apiSecretKey,
@@ -127,7 +129,7 @@ export function getChannelList(params, nativeBridge) {
 				callback(false);
 				return;
 			}
-	
+
 			callback(true, channel);
 		})
 		.catch(e => callback(false));
@@ -135,12 +137,12 @@ export function getChannelList(params, nativeBridge) {
 
 	function handleApplicasterChannelsCollection(collection, callback) {
 		const items = collection["results"];
-	
+
 		if (!items) {
 			callback(false);
 			return;
 		}
-	
+
 		const loaders = items.map(item => {
 			return new Promise(resolve => {
 				loadApplicasterChannel(item, (success, applicasterChannel) => {
@@ -148,21 +150,21 @@ export function getChannelList(params, nativeBridge) {
 				});
 			});
 		});
-	
+
 		Promise.all(loaders).then(applicasterChannels => {
 			if (!applicasterChannels) {
 				callback(false);
 				return;
 			}
-	
+
 			callback(true, applicasterChannels);
 		})
 		.catch(e => { callback(false) });
 	}
-	
+
 	function loadApplicasterChannelList(callback) {
 		const url = `${baseUrl}/collections/13261/items.json`;
-	
+
 		const request = getAuthRequest(url);
 
 		axios(request).then(response => {
@@ -171,7 +173,7 @@ export function getChannelList(params, nativeBridge) {
 				callback(false);
 				return;
 			}
-	
+
 			handleApplicasterChannelsCollection(collection, callback);
 		})
 		.catch(e => callback(false));
