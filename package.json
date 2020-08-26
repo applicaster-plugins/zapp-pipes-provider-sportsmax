@@ -1,6 +1,6 @@
 {
   "name": "@applicaster/zapp-pipes-provider-sportsmaxds",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "this plugin enable to load content from applicaster2 and support multiple broadcasters.",
   "main": "lib/index.js",
   "scripts": {
