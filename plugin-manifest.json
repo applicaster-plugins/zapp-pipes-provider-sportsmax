@@ -4,11 +4,11 @@
     "https://github.com/applicaster-plugins/zapp-pipes-provider-sportsmax"
   ],
   "dependency_name": "@applicaster/zapp-pipes-provider-sportsmaxds",
-  "dependency_version": "1.2.1",
+  "dependency_version": "1.2.2",
   "platform": null,
   "author_name": "Yarovoy Vladislav",
   "author_email": "yarovoy@scand.com",
-  "manifest_version": "1.2.1",
+  "manifest_version": "1.2.2",
   "name": "Sportsmax ds",
   "description": "",
   "type": "data_source_provider",
