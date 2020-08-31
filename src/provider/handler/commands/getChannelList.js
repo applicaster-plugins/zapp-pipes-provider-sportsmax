@@ -69,7 +69,8 @@ export function getChannelList(params, nativeBridge) {
 			"extensions": {
 				free,
 				"channel_id": channel["ui_tag"],
-				"ds_product_ids": authProviders
+				"ds_product_ids": authProviders,
+				"authorization_providers_ids": authProviders
 			}
 		}
 	}
